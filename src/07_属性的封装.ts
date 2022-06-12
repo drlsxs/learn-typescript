@@ -1,0 +1,56 @@
+(function () {
+
+  //定义一个表示人的类
+  class Person {
+
+    private _name: string;
+    private _age: number;
+
+    constructor(name: string, age: number) {
+      this._name = name;
+      this._age = age;
+    }
+
+
+    get name(): string {
+      return this._name;
+    }
+
+    set name(value: string) {
+      this._name = value;
+    }
+
+    get age(): number {
+      return this._age;
+    }
+
+    set age(value: number) {
+      this._age = value;
+    }
+  }
+
+  const per = new Person("孙悟空", 18);
+  console.log(per.name, per.age);
+  per.name = "猪八戒";
+  per.age = 20;
+  console.log(per.name, per.age);
+
+
+  class A {
+    constructor(num: number) {
+      this.num = num;
+    }
+
+    protected num: number;
+
+
+  }
+
+  class B extends A {
+    test() {
+      console.log(this.num);
+    }
+  }
+
+
+}());

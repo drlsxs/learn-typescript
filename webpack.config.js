@@ -54,8 +54,8 @@ module.exports = {
                   {
                     //要兼容的目标浏览器
                     targets: {
-                      "chrome": "88",
-                      "ie": "11",
+                      /*"chrome": "88",
+                      "ie": "11",*/
                     },
                     //指定corejs版本
                     "corejs": "3",
@@ -72,6 +72,32 @@ module.exports = {
         ],
         //要排除的文件
         exclude: /node-modules/
+      },
+      {
+        test: /\.less$/,
+        use: [
+          "style-loader",
+          "css-loader",
+          //引入postcss
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions:{
+                plugins: [
+                  [
+                    "postcss-preset-env",
+                    {
+                      browsers: "last 2 versions",
+                    }
+                  ]
+                ]
+              }
+            }
+          }
+          ,
+          "less-loader"   //执行顺序从下向上
+        ]
+
       }
     ]
   },
@@ -89,7 +115,6 @@ module.exports = {
   //用来设置引用的模块
   resolve: {
     extensions: ['.ts', '.js'],
-
   }
 
 };
